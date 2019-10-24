@@ -22,7 +22,7 @@ public class OrganzationServiceImpl implements OrganizationService {
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public void joinOrganization(Employee employee, EmployeeHealthInsurance employeeHealthInsurance) {
+	public void joinOrganization(Employee employee, EmployeeHealthInsurance employeeHealthInsurance) throws InvalidInsuranceAmountException {
 		employeeService.insertEmployee(employee);
 		healthInsuranceService.registerEmployeeHealthInsurance(employeeHealthInsurance);
 	}

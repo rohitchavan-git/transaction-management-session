@@ -10,6 +10,7 @@ import com.javainuse.model.EmployeeHealthInsurance;
 import com.javainuse.service.EmployeeService;
 import com.javainuse.service.HealthInsuranceService;
 import com.javainuse.service.OrganizationService;
+import com.javainuse.service.impl.InvalidInsuranceAmountException;
 
 @SpringBootApplication
 public class SpringBootJdbcApplication {
@@ -17,7 +18,7 @@ public class SpringBootJdbcApplication {
 	@Autowired
 	EmployeeService employeeService;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InvalidInsuranceAmountException {
 		ApplicationContext context = SpringApplication.run(SpringBootJdbcApplication.class, args);
 		OrganizationService organizationService = context.getBean(OrganizationService.class);
 		HealthInsuranceService insuranceService = context.getBean(HealthInsuranceService.class);
