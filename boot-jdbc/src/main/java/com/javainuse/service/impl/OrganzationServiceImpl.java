@@ -2,6 +2,7 @@ package com.javainuse.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,7 +22,7 @@ public class OrganzationServiceImpl implements OrganizationService {
 	HealthInsuranceService healthInsuranceService;
 
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED)
+	@Transactional(propagation = Propagation.REQUIRED,isolation = Isolation.SERIALIZABLE)
 	public void joinOrganization(Employee employee, EmployeeHealthInsurance employeeHealthInsurance) throws InvalidInsuranceAmountException {
 		employeeService.insertEmployee(employee);
 		healthInsuranceService.registerEmployeeHealthInsurance(employeeHealthInsurance);
