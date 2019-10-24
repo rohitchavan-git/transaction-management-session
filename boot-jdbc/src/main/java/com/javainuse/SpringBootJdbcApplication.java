@@ -33,7 +33,7 @@ public class SpringBootJdbcApplication {
 		EmployeeHealthInsurance employeeHealthInsurance = new EmployeeHealthInsurance();
 		employeeHealthInsurance.setEmpId("emp1");
 		employeeHealthInsurance.setHealthInsuranceSchemeName("premium");
-		employeeHealthInsurance.setCoverageAmount(20000);
+		employeeHealthInsurance.setCoverageAmount(-1);
 
 		organizationService.joinOrganization(emp, employeeHealthInsurance);
 		//empService.insertEmployee(emp);

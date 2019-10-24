@@ -16,8 +16,11 @@ public class HealthInsuranceServiceImpl implements HealthInsuranceService {
 	HealthInsuranceDao healthInsuranceDao;
 
 	@Override
-	@Transactional(propagation = Propagation.MANDATORY)
-	public void registerEmployeeHealthInsurance(EmployeeHealthInsurance employeeHealthInsurance) {
+	@Transactional(propagation = Propagation.MANDATORY,rollbackFor =InvalidInsuranceAmountException.class )
+	public void registerEmployeeHealthInsurance(EmployeeHealthInsurance employeeHealthInsurance) throws InvalidInsuranceAmountException {
+		if (employeeHealthInsurance.getCoverageAmount() < 0) {
+			throw new InvalidInsuranceAmountException("Coverage Amount Should not be negative");
+			}
 		healthInsuranceDao.registerEmployeeHealthInsurance(employeeHealthInsurance);
 	}
 
